@@ -1,4 +1,4 @@
-
+const {tracksModel} = require('../../models')
 
 
 /**
@@ -8,8 +8,8 @@
  */
 const getItems = async (req, res) => {
 
-  res.send('This is a getItems file!!!! Ok....')
-
+  const data = await tracksModel.find({});
+  res.send({data})
 
 }
 

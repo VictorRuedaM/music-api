@@ -7,7 +7,9 @@ const routes = require('./src/routes');
 
 
 const app = express();
+
 app.use(cors());
+app.use(express.json());
 routes(app);
 const port = process.env.PORT || 3000;
 

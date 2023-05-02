@@ -3,7 +3,7 @@ const routes = (app) => {
 
   app.use('/api/tracks', tracks);
 
-  console.log('llegoooo')
+  
 }
 
 

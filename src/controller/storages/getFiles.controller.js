@@ -1,4 +1,5 @@
 const {storagesModel} = require('../../models');
+const {handleHttpError} = require('../../utils/handleError')
 
 /**
  * 
@@ -9,9 +10,14 @@ const {storagesModel} = require('../../models');
 
 const getFiles = async (req, res) => {
 
-  const data = await storagesModel.find({});
+  try {
 
-  res.send(data);
+    const data = await storagesModel.find({});
+
+    res.send(data);
+  } catch (error) {
+    handleHttpError(res, 'File no Found in DataBase', 404);
+  }
 
 }
 

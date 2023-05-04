@@ -1,5 +1,6 @@
 const {storagesModel} = require('../../models');
-const {PUBLIC_URL} = process.env
+const {handleHttpError} = require('../../utils/handleError')
+const {PUBLIC_URL} = process.env;
 
 /**
  * 
@@ -10,16 +11,24 @@ const {PUBLIC_URL} = process.env
 
 const createFile = async (req, res) => {
 
-  
-  const {body, file} = req;
-  
-  const fileData = {
-    fileName: file.filename,
-    url:`${PUBLIC_URL}/${file.filename}`
+  try {
+    const {file} = req;
+    if(!file){
+      handleHttpError(res, 'Invalid params or wrong data', 400);
+      return;
+    }
+    const fileData = {
+      fileName: file.filename,
+      url:`${PUBLIC_URL}/${file.filename}`
+    }
+    
+    
+    const data = await storagesModel.create(fileData);
+    res.send(data)
+  } catch (error) {
+    handleHttpError(res, 'Internal Server Error', 500);
   }
   
-  const data = await storagesModel.create(fileData);
-  res.send(data)
 
 }
 

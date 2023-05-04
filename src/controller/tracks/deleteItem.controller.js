@@ -1,3 +1,6 @@
+const {tracksModel} = require('../../models');
+const {matchedData} = require('express-validator');
+const {handleHttpError} = require('../../utils/handleError');
 
 
 /**
@@ -7,6 +10,18 @@
  */
 const deleteItem = async (req, res) => {
 
+  try {
+    
+    req = matchedData(req);
+    const {id} = req;
+    console.log(id)
+    const data = await tracksModel.delete({_id: id});
+    res.send({data})
+    
+  } catch (error) {
+    handleHttpError(res, 'Internal Server Error', 500);
+    console.log(error)
+  }
 
 
 }

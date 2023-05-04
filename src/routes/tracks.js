@@ -1,15 +1,17 @@
 const {Router} = require('express');
 const {getItems, getItem, createItem, updateItem, deleteItem} = require('../controller/tracks/index');
-const {validatorCreateItem} = require('../validators/tracks.validator');
+const {validatorCreateItem, validatorgetItemById} = require('../validators/tracks.validator');
+const custom = require('../middlewares/customHeader');
 
 const router = Router();
 
 
+router.get('/:id', validatorgetItemById, getItem);
 router.get('/', getItems);
-router.get('/:id', getItem);
+
 router.post('/', validatorCreateItem, createItem);
-router.put('/:id', updateItem);
-router.delete('/:id', deleteItem);
+router.put('/:id',validatorgetItemById, validatorCreateItem, updateItem);
+router.delete('/:id',validatorgetItemById, deleteItem);
 
 
 module.exports = router;

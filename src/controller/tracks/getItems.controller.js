@@ -1,5 +1,5 @@
 const {tracksModel} = require('../../models')
-
+const {handleHttpError} = require('../../utils/handleError');
 
 /**
  * Get record list from DB
@@ -8,8 +8,16 @@ const {tracksModel} = require('../../models')
  */
 const getItems = async (req, res) => {
 
-  const data = await tracksModel.find({});
-  res.send({data})
+  try {
+    
+    const data = await tracksModel.find({});
+    res.send({data})
+  } catch (error) {
+    handleHttpError(res, 'Data Not Found', 404);
+  }
+
+
+  
 
 }
 

@@ -1,5 +1,6 @@
 const {tracksModel} = require('../../models');
-
+const {handleHttpError} = require('../../utils/handleError');
+const {matchedData} = require('express-validator');
 /**
  * Create record in DB
  * @param {*} req 
@@ -8,13 +9,16 @@ const {tracksModel} = require('../../models');
 
 const createItem = async (req, res) => {
 
-  const {body} = req;
-
-  console.log(body)
-  const data = await tracksModel.create(body);
-
-
-  res.send({data})
+  
+  try {
+    const body = matchedData(req);
+    
+    const data = await tracksModel.create(body);
+    res.status(201).send({data});
+    
+  } catch (error) {
+    handleHttpError(res, 'Internal Server Error', 500);
+  }
 
 
 

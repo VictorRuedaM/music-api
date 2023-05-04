@@ -24,7 +24,7 @@ const createFile = async (req, res) => {
     
     
     const data = await storagesModel.create(fileData);
-    res.send(data)
+    res.status(201).send({data})
   } catch (error) {
     handleHttpError(res, 'Internal Server Error', 500);
   }

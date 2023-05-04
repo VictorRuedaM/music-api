@@ -13,10 +13,11 @@ const getFiles = async (req, res) => {
   try {
 
     const data = await storagesModel.find({});
-
-    res.send(data);
+    console.log(data.length)
+    data.length ? res.send(data) : handleHttpError(res, 'File no Found in DataBase', 404);;
+    
   } catch (error) {
-    handleHttpError(res, 'File no Found in DataBase', 404);
+    handleHttpError(res, 'Internal Server Error', 500);
   }
 
 }

@@ -3,8 +3,9 @@ const multer = require('multer');
 const storage = multer.diskStorage({
 
   destination: function(req, file, cb){
-    const pathStorage = `${__dirname}/../storage`;
-    cb(null, pathStorage);
+    const pahtStorage = `${__dirname}/../storage`;
+   
+    cb(null, pahtStorage);
   },
   filename: function(req, file, cb){
 

@@ -14,9 +14,14 @@ const getItem = async (req, res) => {
     req = matchedData(req);
     const {id} = req;
     const data = await tracksModel.findById(id);
-    res.status(200).send({data});
+    if(data !== null){
+      res.status(200).send({data});
+    }else{
+      handleHttpError(res, 'Data Not Found', 404);
+    }
+    
   } catch (error) {
-    handleHttpError(res, 'Data Not Found', 404);
+    handleHttpError(res, 'Internal Server Error', 500);
   }
 
   

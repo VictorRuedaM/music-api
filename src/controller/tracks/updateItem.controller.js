@@ -13,12 +13,26 @@ const updateItem = async (req, res) => {
 
     const {id, ...body} = matchedData(req);
     
-    const data = await tracksModel.findOneAndUpdate(id, body, { new: true })
-    res.status(201).send({data});
+    const dataExist =await tracksModel.findById(id);
+    console.log(dataExist)
+    if(dataExist){
+      const data = await tracksModel.findOneAndUpdate({_id: id}, body, { new: true })
+      res.status(201).send({data});
+    }
+    else{
+      handleHttpError(res, 'Data Not Found', 404);
+      return;
+    }
+       
     
+  
   } catch (error) {
     handleHttpError(res, 'Internal Server Error', 500);
   }
+    
+      
+    
+    
 
 
 }

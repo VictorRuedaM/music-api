@@ -4,7 +4,7 @@ const {encryptPassword, comparePassword} = require('../../utils/handlePassword')
 const {generateToken} = require('../../utils/handleJwt');
 const {handleHttpError} = require('../../utils/handleError');
 
-const authUser = async (req, res) => {
+const authRegisterUser = async (req, res) => {
   try {
     req = matchedData(req);
     const {body, password} = req
@@ -41,4 +41,4 @@ const authUser = async (req, res) => {
 }
 
 
-module.exports = authUser;
+module.exports = authRegisterUser;

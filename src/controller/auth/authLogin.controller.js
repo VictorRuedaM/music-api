@@ -5,6 +5,13 @@ const {handleHttpError} = require('../../utils/handleError');
 const {comparePassword} = require('../../utils/handlePassword');
 
 
+/**
+ * Validate a user in the system and return their data and a token
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
+
 const authLoginUser = async (req, res) => {
 
   try {

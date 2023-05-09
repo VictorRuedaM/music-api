@@ -2,6 +2,7 @@ const {Router} = require('express');
 const {getItems, getItem, createItem, updateItem, deleteItem} = require('../controller/tracks/index');
 const {validatorCreateItem, validatorgetItemById} = require('../validators/tracks.validator');
 const custom = require('../middlewares/customHeader');
+const authMiddleware = require('../middlewares/authMiddleware');
 
 const router = Router();
 
@@ -12,7 +13,7 @@ router.get('/:id', validatorgetItemById, getItem);
 /**
  * Get list of items
  */
-router.get('/', getItems);
+router.get('/',authMiddleware, getItems);
 /**
  * Create item in DB
  */

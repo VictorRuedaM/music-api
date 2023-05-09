@@ -4,6 +4,13 @@ const {encryptPassword, comparePassword} = require('../../utils/handlePassword')
 const {generateToken} = require('../../utils/handleJwt');
 const {handleHttpError} = require('../../utils/handleError');
 
+
+/**
+ * Create a user in the DB and return a session token
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
 const authRegisterUser = async (req, res) => {
   try {
     req = matchedData(req);

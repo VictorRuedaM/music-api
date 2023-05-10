@@ -3,7 +3,7 @@ const {getItems, getItem, createItem, updateItem, deleteItem} = require('../cont
 const {validatorCreateItem, validatorgetItemById} = require('../validators/tracks.validator');
 const custom = require('../middlewares/customHeader');
 const authMiddleware = require('../middlewares/authMiddleware');
-const checkRole = require('../middlewares/role');
+const checkRole = require('../middlewares/roleMiddleware');
 
 const router = Router();
 

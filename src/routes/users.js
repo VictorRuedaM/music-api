@@ -1,0 +1,17 @@
+const {Router} = require('express');
+const {validatorgetItemById} = require('../validators/tracks.validator')
+
+const router = Router();
+
+
+router.get('/', validatorgetItemById);
+router.get('/:id', validatorgetItemById);
+router.put('/:id', validatorgetItemById);
+router.delete('/:id', validatorgetItemById)
+
+
+
+
+
+
+module.exports = router;

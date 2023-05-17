@@ -4,7 +4,7 @@ const {validatorgetItemById} = require('../validators/tracks.validator')
 const router = Router();
 
 
-router.get('/', validatorgetItemById);
+router.get('/');
 router.get('/:id', validatorgetItemById);
 router.put('/:id', validatorgetItemById);
 router.delete('/:id', validatorgetItemById)
